@@ -1,0 +1,57 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgis/postgis:15-3.4
+    container_name: geo-layers-postgres
+    restart: no
+    environment:
+      POSTGRES_DB: geo_layers
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    networks:
+      - geo-layers-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: geo-layers-app:latest
+    container_name: geo-layers-app
+    working_dir: /var/www
+    volumes:
+      - .:/var/www
+    ports:
+      - "8000:8000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      DB_CONNECTION: pgsql
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_DATABASE: geo_layers
+      DB_USERNAME: postgres
+      DB_PASSWORD: postgres
+    networks:
+      - geo-layers-network
+    command: >
+      sh -c "git config --global --add safe.directory /var/www &&
+             [ ! -f .env ] && cp .env.example .env || true &&
+             composer install --no-interaction &&
+             php artisan key:generate --force &&
+             php artisan migrate --force &&
+             php artisan db:seed --force &&
+             php artisan serve --host=0.0.0.0 --port=8000"
+
+networks:
+  geo-layers-network:
+    driver: bridge
+
