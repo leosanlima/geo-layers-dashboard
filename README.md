@@ -1,70 +1,74 @@
-# Geo Layers Dashboard
+# Gestão de Dados Georreferenciados
 
-A Laravel 11 application with Filament 4 admin panel for managing geographic layers using PostGIS and displaying them on an interactive map with ArcGIS Maps SDK.
+Sistema de gestão e visualização de dados georreferenciados desenvolvido com Laravel 12 e Filament 4, utilizando PostGIS para armazenamento espacial e ArcGIS Maps SDK para visualização interativa.
 
-## Features
+## Funcionalidades
 
-- **Admin Panel** (`/painel`): Secure CRUD interface for managing geographic layers
-- **Public Map** (`/`): Interactive map displaying all registered layers using ArcGIS Maps SDK v4
-- **PostGIS Integration**: Spatial data storage and indexing
-- **Docker Support**: Complete containerized setup
+- **Painel Administrativo** (`/painel`): Interface CRUD segura para gerenciar camadas geográficas
+- **Mapa Público** (`/`): Mapa interativo exibindo todas as camadas registradas usando ArcGIS Maps SDK v4
+- **Integração PostGIS**: Armazenamento e indexação de dados espaciais
+- **Suporte Docker**: Configuração completa containerizada
+- **API REST**: Endpoints para integração com outros sistemas
+- **Validação GeoJSON**: Validação automática de arquivos GeoJSON
 
-## Tech Stack
+## Stack Tecnológico
 
-- **Backend**: Laravel 11 with Filament 4
-- **Database**: PostgreSQL 15 with PostGIS extension
-- **Frontend Map**: ArcGIS Maps SDK for JavaScript v4
-- **Authentication**: Filament's built-in auth system
-- **Containerization**: Docker Compose
+- **Backend**: Laravel 12 com Filament 4
+- **Banco de Dados**: PostgreSQL 15 com extensão PostGIS
+- **Frontend Mapa**: ArcGIS Maps SDK for JavaScript v4
+- **Autenticação**: Sistema de autenticação integrado do Filament
+- **Containerização**: Docker Compose
+- **Validação**: Regras customizadas para validação de GeoJSON
 
-## Prerequisites
+## Pré-requisitos
 
-- Docker and Docker Compose
+- Docker e Docker Compose
 - Git
 
-## Installation & Setup
+## Instalação e Configuração
 
-### 1. Clone the Repository
+### 1. Clonar o Repositório
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/leosanlima/geo-layers-dashboard.git
 cd geo-layers-dashboard
 ```
 
-### 2. Environment Configuration
+### 2. Configuração do Ambiente
 
-Copy the environment file:
+O arquivo `.env.example` já está configurado com as configurações corretas. Ele será copiado automaticamente para `.env` durante a inicialização do container.
 
-```bash
-cp .env.example .env
-```
+**Configurações incluídas:**
+- Nome da aplicação: "Gestão de Dados Georreferenciados"
+- Banco PostgreSQL com PostGIS
+- Chave de aplicação gerada
+- Configurações de produção
 
-The `.env` file is already configured for Docker setup with PostgreSQL/PostGIS.
+### 3. Executar com Docker
 
-### 3. Run with Docker
-
-Start the application:
+Iniciar a aplicação:
 
 ```bash
 docker-compose up -d
 ```
 
-This will:
-- Start PostgreSQL 15 with PostGIS extension
-- Build and start the Laravel application
-- Run migrations and seeders automatically
-- Create an admin user
+Isso irá:
+- Iniciar PostgreSQL 15 com extensão PostGIS
+- Construir e iniciar a aplicação Laravel
+- Executar migrações e seeders automaticamente
+- Criar um usuário administrador
+- Copiar `.env.example` para `.env` automaticamente
 
-### 4. Access the Application
+### 4. Acessar a Aplicação
 
-- **Public Map**: http://localhost:8000
-- **Admin Panel**: http://localhost:8000/painel
+- **Mapa Público**: http://localhost:8000
+- **Painel Administrativo**: http://localhost:8000/painel
 
-### 5. Admin Credentials
+### 5. Credenciais do Administrador
 
-Default admin user:
+Usuário administrador padrão:
 - **Email**: admin@example.com
-- **Password**: password
+- **Senha**: password
 
 ## Usage
 
