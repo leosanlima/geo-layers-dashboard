@@ -30,6 +30,47 @@
             text-align: center;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
             z-index: 100;
+            position: relative;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header h1 {
+            margin: 0;
+            flex: 1;
+        }
+        
+        .header p {
+            margin: 0;
+            margin-top: 0.25rem;
+        }
+        
+        .btn-admin {
+            position: absolute;
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            background: #ffc107;
+            color: #000;
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: bold;
+            text-decoration: none;
+            display: inline-block;
+            transition: background-color 0.3s;
+        }
+        
+        .btn-admin:hover {
+            background: #ffb300;
         }
         
         .container {
@@ -221,8 +262,13 @@
 </head>
 <body>
     <div class="header">
-        <h1>Visualizador GeoJSON</h1>
-        <p>ArcGIS Maps SDK</p>
+        <div class="header-content">
+            <div>
+                <h1>Visualizador GeoJSON</h1>
+                <p>ArcGIS Maps SDK</p>
+            </div>
+            <a href="/painel" class="btn-admin">Admin</a>
+        </div>
     </div>
     
     <div class="container">

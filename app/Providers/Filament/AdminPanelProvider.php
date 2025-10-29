@@ -36,6 +36,13 @@ class AdminPanelProvider extends PanelProvider
             ->pages([
                 Dashboard::class,
             ])
+            ->navigationItems([
+                \Filament\Navigation\NavigationItem::make()
+                    ->label('Ver Mapa')
+                    ->icon('heroicon-o-map')
+                    ->url(url('/'))
+                    ->openUrlInNewTab(),
+            ])
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\Filament\Widgets')
             ->widgets([
                 AccountWidget::class,
