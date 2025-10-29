@@ -32,6 +32,7 @@ Sistema de gestão e visualização de dados georreferenciados desenvolvido com 
 ```bash
 git clone https://github.com/leosanlima/geo-layers-dashboard.git
 cd geo-layers-dashboard
+git checkout master
 ```
 
 ### 2. Configuração do Ambiente
