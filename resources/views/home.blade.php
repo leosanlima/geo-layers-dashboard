@@ -918,22 +918,39 @@
                 }
             }
 
-
-            document.addEventListener('DOMContentLoaded', function() {
-
+            // Inicializar tudo quando a página carregar
+            function initializeApp() {
+                // Verificar se os elementos DOM existem
+                if (!document.getElementById('mapView')) {
+                    console.error('Elemento mapView não encontrado');
+                    return;
+                }
+                
                 initMap();
                 
                 // Adicionar event listeners aos botões
-                document.getElementById('load-btn').addEventListener('click', loadGeoJSON);
-                document.getElementById('zoom-btn').addEventListener('click', zoomToAll);
-                document.getElementById('clear-map-btn').addEventListener('click', clearMap);
+                const loadBtn = document.getElementById('load-btn');
+                const zoomBtn = document.getElementById('zoom-btn');
+                const clearBtn = document.getElementById('clear-map-btn');
+                
+                if (loadBtn) loadBtn.addEventListener('click', loadGeoJSON);
+                if (zoomBtn) zoomBtn.addEventListener('click', zoomToAll);
+                if (clearBtn) clearBtn.addEventListener('click', clearMap);
                 
                 updateStatus('Pronto para carregar dados da API');
                 
                 setTimeout(() => {
                     loadGeoJSON();
                 }, 2000);
+            }
+
+            // Aguardar o DOM e os módulos ArcGIS estarem prontos
+            document.addEventListener('DOMContentLoaded', function() {
+                // Não fazer nada aqui, aguardar o callback do require
             });
+            
+            // Inicializar quando os módulos ArcGIS estiverem carregados
+            initializeApp();
 
         });
     </script>
